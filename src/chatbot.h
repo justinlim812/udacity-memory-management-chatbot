@@ -39,6 +39,9 @@ public:
     // Move Constructor
     ChatBot(ChatBot &&source);
 
+    // Move Assignment Operator
+    ChatBot &operator=(ChatBot &&source);
+
     ////
     //// EOF STUDENT CODE
 

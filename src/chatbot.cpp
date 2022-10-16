@@ -58,7 +58,7 @@ ChatBot::ChatBot(const ChatBot &source){
 ChatBot& ChatBot::operator=(const ChatBot &source){
     std::cout << "ChatBot Copy Assignment Operator" << std::endl;
 
-    // Check whether the caller is the same object
+    // Protect self-assignment
     if(this == &source){
         return *this;
     }
@@ -83,6 +83,27 @@ ChatBot::ChatBot(ChatBot &&source){
     source._image = nullptr;
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
+}
+
+// Move assignment operator
+ChatBot &ChatBot::operator=(ChatBot &&source){
+    std::cout << "ChatBot Move Assignment Operator" << std::endl;
+
+    // Protect self-assignment
+    if (this == &source){
+        return *this;
+    }
+
+    delete _image;
+    _image = source._image;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+
+    source._image = nullptr;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+
+    return *this;
 }
 
 ////
